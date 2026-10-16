@@ -1,5 +1,5 @@
 
-# Perfume Collection API
+# CIT 3102: Systems Integration and Architecture (Midterms - Activity 2)
 
 ## 1. Project Information
 
