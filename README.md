@@ -1,59 +1,153 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Perfume Collection API
 
-## About Laravel
+## 1. Project Information
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Project Title:** Perfume Collection API
+- **Name:** Elica Laureen S. Cruz
+- **Section:** IT3E
+- **Chosen Resource:** Perfume Collection
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This project is a REST API built with Laravel that allows users to register, log in, and manage perfume records. It supports creating, retrieving, updating, deleting, and filtering perfumes. Laravel Sanctum is used to protect routes that require authentication.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 2. Setup Instructions
 
-## Learning Laravel
+### Requirements
+- PHP
+- Composer
+- Laravel installer
+- SQLite
+- Bruno or Postman for testing
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Steps to Run the Project
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Clone the repository:
 
-## Laravel Sponsors
+   ```bash
+   git clone [YOUR_REPOSITORY_URL]
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+2. Navigate to the project directory:
 
-### Premium Partners
+   ```bash
+   cd perfume-api
+   ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+3. Install the project dependencies:
 
-## Contributing
+   ```bash
+   composer install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. Create the environment file:
 
-## Code of Conduct
+   ```bash
+   cp .env.example .env
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+   On Windows Command Prompt, you can use:
 
-## Security Vulnerabilities
+   ```cmd
+   copy .env.example .env
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. Generate the application key:
 
-## License
+   ```bash
+   php artisan key:generate
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Configure SQLite in `.env` and ensure the database file exists at `database/database.sqlite`.
+
+   Set the database connection to SQLite:
+
+   ```env
+   DB_CONNECTION=sqlite
+   ```
+
+7. Run the database migrations:
+
+   ```bash
+   php artisan migrate
+   ```
+
+8. Start the Laravel development server:
+
+   ```bash
+   php artisan serve
+   ```
+
+9. Send requests using Bruno at:
+
+   `http://127.0.0.1:8000`
+
+## 3. API Routes
+
+| Method | Path | Description | Token Required? |
+|---|---|---|---|
+| POST | `/api/register` | Register a new user and return a token | No |
+| POST | `/api/login` | Authenticate a user and return a token | No |
+| POST | `/api/logout` | Log out by revoking the current token | Yes |
+| GET | `/api/me` | Retrieve the authenticated user's information | Yes |
+| GET | `/api/perfumes` | Retrieve all perfumes or filter by brand and scent | Yes |
+| POST | `/api/perfumes` | Create a new perfume | Yes |
+| GET | `/api/perfumes/{perfume}` | Retrieve one perfume by ID | Yes |
+| PUT | `/api/perfumes/{perfume}` | Update an existing perfume | Yes |
+| DELETE | `/api/perfumes/{perfume}` | Delete a perfume | Yes |
+
+
+## 4. Screenshots of API Testing
+
+### Request 1 — Register a User
+Expected status: `201 Created`
+
+![Request 1](screenshots/Request%201.png)
+
+### Request 2 — Login
+Expected status: `200 OK`
+
+![Request 2](screenshots/Request%202.png)
+
+### Request 3 — Get Perfumes Without a Token
+Expected status: `401 Unauthorized`
+
+![Request 3](screenshots/Request%203.png)
+
+### Request 4 — Get Perfumes With a Token
+Expected status: `200 OK`
+
+![Request 4](screenshots/Request%204.png)
+
+### Request 5 — Create a Perfume
+Expected status: `201 Created`
+
+![Request 5](screenshots/Request%205.png)
+
+### Request 6 — Missing Required Field
+Expected status: `422 Unprocessable Content`
+
+![Request 6](screenshots/Request%206.png)
+
+### Request 7 — Get One Perfume
+Expected status: `200 OK`
+
+![Request 7](screenshots/Request%207.png)
+
+### Request 8 — Get a Nonexistent Perfume
+Expected status: `404 Not Found`
+
+![Request 8](screenshots/Request%208.png)
+
+### Request 9 — Update a Perfume
+Expected status: `200 OK`
+
+![Request 9](screenshots/Request%209.png)
+
+### Request 10 — Delete a Perfume
+Expected status: `204 No Content`
+
+![Request 10](screenshots/Request%2010.png)
+
+## 5. Why Does DELETE Return 204 Instead of 200?
+
+A `204 No Content` status means that the request was successful, but there is no response body to return. When a perfume is deleted, the API does not need to send the deleted record back to the client. A `200 OK` response is also used for successful requests, usually when the server returns information or a message. Using `204` makes it clear that the deletion succeeded and there is no additional content in the response.
