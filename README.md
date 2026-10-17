@@ -24,7 +24,7 @@ This project is a REST API built with Laravel that allows users to register, log
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/xcecixx/cit3102-m5-makeup.git
+   git clone https://github.com/xcecixx/cit3102-m5-makeup.git](https://github.com/elzurcx/cit3102-m5-perfume.git
    ```
 
 2. Navigate to the project directory:
