@@ -24,13 +24,13 @@ This project is a REST API built with Laravel that allows users to register, log
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/elzurcx/cit3102-m5-perfume.git
+   git clone https://github.com/xcecixx/cit3102-m5-makeup.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd cit3102-m5-perfume
+   cd perfume-api
    ```
 
 3. Install the project dependencies:
@@ -83,18 +83,18 @@ This project is a REST API built with Laravel that allows users to register, log
 
 ## 3. API Routes
 
-| # | Request | Expected Status | Description |
+| Method | Path | Description | Token Required? |
 |---|---|---|---|
-| 1 | `POST /api/register` | `201` | Register user |
-| 2 | `POST /api/login` | `200` | Log in user |
-| 3 | `GET /api/perfumes` | `401` | Unauthorized check |
-| 4 | `GET /api/perfumes` | `200` | Fetch perfumes (Authenticated) |
-| 5 | `POST /api/perfumes` | `201` | Create perfume |
-| 6 | `POST /api/perfumes` | `422` | Validation error |
-| 7 | `GET /api/perfumes/1` | `200` | Fetch single perfume |
-| 8 | `GET /api/perfumes/99999` | `404` | Non-existent perfume |
-| 9 | `PUT /api/perfumes/1` | `200` | Update perfume |
-| 10 | `DELETE /api/perfumes/1` | `204` | Delete perfume |
+| POST | `/api/register` | Register a new user and return a token | No |
+| POST | `/api/login` | Authenticate a user and return a token | No |
+| POST | `/api/logout` | Log out by revoking the current token | Yes |
+| GET | `/api/me` | Retrieve the authenticated user's information | Yes |
+| GET | `/api/perfumes` | Retrieve all perfumes or filter by brand and scent | Yes |
+| POST | `/api/perfumes` | Create a new perfume | Yes |
+| GET | `/api/perfumes/{perfume}` | Retrieve one perfume by ID | Yes |
+| PUT | `/api/perfumes/{perfume}` | Update an existing perfume | Yes |
+| DELETE | `/api/perfumes/{perfume}` | Delete a perfume | Yes |
+
 
 ## 4. Screenshots of API Testing
 
