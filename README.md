@@ -99,7 +99,7 @@ For protected requests, open the **Auth** tab, select **Bearer Token**, and ente
 
 ## 3. API Routes
 
-| # | Verb | Path | Description | Token Required? |
+| # | Method | Path | Description | Token Required? |
 |---|---|---|---|---|
 | 1 | POST | `/api/register` | Register a new user | No |
 | 2 | POST | `/api/login` | Log in and receive an authentication token | No |
